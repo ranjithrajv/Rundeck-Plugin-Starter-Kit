@@ -1,0 +1,8 @@
+export CONTAINER_NAME="rundeck-localdev"
+export PLUGIN_DIR=".rundeck/plugins"
+export RUNDECK_VERSION="5.9.0"
+export RUNDECK_URL="http://localhost:4440"
+export HOST_RUNDECK_PORT="4440"
+export PLUGIN_NAME="rundeck-plus"
+export PLUGIN_ZIP="rundeck-plus.zip"
+export RUNDECK_AUTH_TOKEN="your-rundeck-api-key"

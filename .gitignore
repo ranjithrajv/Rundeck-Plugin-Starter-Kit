@@ -1,0 +1,8 @@
+# Ignore rundeck folder
+.rundeck
+
+# Ignore .env file for version control 
+.env
+.envrc
+# Ignore tmp folder if any is existing
+.tmp

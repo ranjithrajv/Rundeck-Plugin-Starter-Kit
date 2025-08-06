@@ -1,0 +1,19 @@
+name: rundeck-plus
+version: 0.0.1
+description: "A Rundeck UI plugin that adds some enhancements to Rundeck UI."
+rundeckPluginVersion: 1.2
+author: Ranijth Raj
+date: 2024-09-07
+# url: https://github.com/yourusername/project-vanadium
+providers:
+    - service: UI
+      name: rundeck-plus
+      plugin-type: ui
+      title: "Rundeck Plus"
+      description: "A Rundeck UI plugin that adds some enhancements to Rundeck UI."
+      ui:
+        - pages: 'menu/jobs'
+          scripts:
+            - js/main.js
+          styles:
+            - css/main.css
