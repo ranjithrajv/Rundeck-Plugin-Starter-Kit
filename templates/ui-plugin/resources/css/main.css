@@ -1,0 +1,65 @@
+/* {{PLUGIN_NAME}} - Custom Styles */
+/* Author: {{AUTHOR_NAME}} */
+/* Generated on: {{DATE}} */
+
+/* Plugin container styles */
+.{{PLUGIN_NAME}}-container {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+    padding: 15px;
+    margin: 10px 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.{{PLUGIN_NAME}}-container h3 {
+    color: #495057;
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* Button styles */
+.{{PLUGIN_NAME}}-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.{{PLUGIN_NAME}}-button:hover {
+    background-color: #0056b3;
+}
+
+.{{PLUGIN_NAME}}-button:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+/* Input styles */
+.{{PLUGIN_NAME}}-input {
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.5;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.{{PLUGIN_NAME}}-input:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .{{PLUGIN_NAME}}-container {
+        margin: 5px;
+        padding: 10px;
+    }
+}

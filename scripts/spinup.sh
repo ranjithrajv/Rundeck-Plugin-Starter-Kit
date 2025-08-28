@@ -16,7 +16,7 @@ mkdir -p "${PWD}/${PLUGIN_DIR}"
 echo "Created plugin directory: ${PWD}/${PLUGIN_DIR}"
 
 # Check if a container with the same name already exists
-if sudo docker ps -a --format '{{.Names}}' | grep -q "^${CONTAINER_NAME}$"; then
+if sudo docker ps -a --format '{{.Names}}' | grep -q "^${CONTAINER_NAME}$\"; then
     echo "Error: A container with the name '${CONTAINER_NAME}' already exists."
     echo "Please remove the existing container or choose a different name in the .envrc file."
     exit 1

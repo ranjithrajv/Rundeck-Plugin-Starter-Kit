@@ -1,0 +1,19 @@
+name: {{PLUGIN_NAME}}
+version: 0.1.0
+description: "{{PLUGIN_DESCRIPTION}}"
+rundeckPluginVersion: 1.2
+author: {{AUTHOR_NAME}}
+date: {{DATE}}
+url: {{PLUGIN_URL}}
+providers:
+    - service: UI
+      name: {{PLUGIN_NAME}}
+      plugin-type: ui
+      title: "{{PLUGIN_TITLE}}"
+      description: "{{PLUGIN_DESCRIPTION}}"
+      ui:
+        - pages: 'menu/jobs'
+          scripts:
+            - js/main.js
+          styles:
+            - css/main.css

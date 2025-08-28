@@ -1,0 +1,41 @@
+name: {{PLUGIN_NAME}}
+version: 0.1.0
+description: "{{PLUGIN_DESCRIPTION}}"
+rundeckPluginVersion: 1.2
+author: {{AUTHOR_NAME}}
+date: {{DATE}}
+url: {{PLUGIN_URL}}
+providers:
+    - service: Notification
+      name: {{PLUGIN_NAME}}
+      plugin-type: script
+      title: "{{PLUGIN_TITLE}}"
+      description: "{{PLUGIN_DESCRIPTION}}"
+      script-interpreter: bash
+      script-file: scripts/notify.sh
+      config:
+        - name: webhook_url
+          title: Webhook URL
+          description: The webhook URL to send notifications to
+          type: String
+          required: true
+        - name: channel
+          title: Channel
+          description: Target channel or recipient
+          type: String
+          default: "general"
+        - name: username
+          title: Username
+          description: Username to display in notifications
+          type: String
+          default: "Rundeck"
+        - name: on_success
+          title: Notify on Success
+          description: Send notification on job success
+          type: Boolean
+          default: true
+        - name: on_failure
+          title: Notify on Failure
+          description: Send notification on job failure
+          type: Boolean
+          default: true

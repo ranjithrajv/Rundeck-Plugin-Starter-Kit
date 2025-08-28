@@ -1,0 +1,26 @@
+name: {{PLUGIN_NAME}}
+version: 0.1.0
+description: "{{PLUGIN_DESCRIPTION}}"
+rundeckPluginVersion: 1.2
+author: {{AUTHOR_NAME}}
+date: {{DATE}}
+url: {{PLUGIN_URL}}
+providers:
+    - service: NodeExecutor
+      name: {{PLUGIN_NAME}}
+      plugin-type: script
+      title: "{{PLUGIN_TITLE}}"
+      description: "{{PLUGIN_DESCRIPTION}}"
+      script-interpreter: bash
+      script-file: scripts/executor.sh
+      config:
+        - name: timeout
+          title: Timeout (seconds)
+          description: Maximum execution time in seconds
+          type: Integer
+          default: 30
+        - name: retries
+          title: Retry Count
+          description: Number of retries on failure
+          type: Integer
+          default: 1

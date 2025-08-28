@@ -1,0 +1,124 @@
+#!/bin/bash
+
+set -e
+
+# Get script directory and version
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+VERSION=$(cat "$SCRIPT_DIR/VERSION" 2>/dev/null || echo "unknown")
+
+# Show usage information
+show_usage() {
+    cat <<EOF
+Rundeck Plugin Starter Kit CLI
+
+USAGE:
+    rundeck-plugins-cli <command> [options]
+
+COMMANDS:
+    spinup      Start local development environment
+    create      Create a new plugin configuration
+    deploy      Deploy plugin to local Rundeck instance  
+    help        Show this help message
+    version     Show version information
+    list        List available commands and templates
+
+OPTIONS:
+    -h, --help     Show help for specific command
+    -v, --version  Show version information
+
+EXAMPLES:
+    rundeck-plugins-cli spinup
+    rundeck-plugins-cli create
+    rundeck-plugins-cli deploy
+    rundeck-plugins-cli help create
+
+For more information, visit: https://github.com/ranjithrajv/rundeck-plus
+EOF
+}
+
+# Show version information
+show_version() {
+    cat <<EOF
+Rundeck Plugin Starter Kit CLI
+Version: $VERSION
+
+Copyright (c) 2025 Ranjith Raj
+License: Open Source
+EOF
+}
+
+# List available commands and templates
+show_list() {
+    echo "Available Commands:"
+    echo "  spinup  - Start local development environment"
+    echo "  create  - Create a new plugin configuration"
+    echo "  deploy  - Deploy plugin to local Rundeck instance"
+    echo "  help    - Show help information"
+    echo "  version - Show version information"
+    echo "  list    - Show this list"
+    echo ""
+    
+    echo "Available Plugin Templates:"
+    if [ -d "$SCRIPT_DIR/templates" ]; then
+        for template in "$SCRIPT_DIR/templates"/*; do
+            if [ -d "$template" ]; then
+                template_name=$(basename "$template")
+                echo "  $template_name"
+            fi
+        done
+    else
+        echo "  No templates found"
+    fi
+}
+
+# Check if a command is provided
+if [ -z "$1" ]; then
+    show_usage
+    exit 1
+fi
+
+COMMAND=$1
+shift
+
+# Handle built-in commands
+case "$COMMAND" in
+    "help"|"-h"|"--help")
+        if [ -n "$1" ]; then
+            # Show help for specific command if available
+            HELP_COMMAND_PATH="$SCRIPT_DIR/scripts/${1}.sh"
+            if [ -f "$HELP_COMMAND_PATH" ]; then
+                echo "Help for command: $1"
+                echo ""
+                bash "$HELP_COMMAND_PATH" --help 2>/dev/null || echo "No detailed help available for $1"
+            else
+                echo "Unknown command: $1"
+                echo ""
+                show_usage
+            fi
+        else
+            show_usage
+        fi
+        exit 0
+        ;;
+    "version"|"-v"|"--version")
+        show_version
+        exit 0
+        ;;
+    "list")
+        show_list
+        exit 0
+        ;;
+esac
+
+# Find and execute the command script
+COMMAND_PATH="$SCRIPT_DIR/scripts/${COMMAND}.sh"
+
+if [ -f "$COMMAND_PATH" ]; then
+    # Pass all remaining arguments to the command script
+    bash "$COMMAND_PATH" "$@"
+else
+    echo "Error: Unknown command '$COMMAND'"
+    echo ""
+    echo "Run 'rundeck-plugins-cli list' to see available commands"
+    exit 1
+fi

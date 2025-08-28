@@ -8,7 +8,7 @@ The Rundeck Plugin Starter Kit provides everything you need to start developing 
 
 - Complete plugin structure and configuration
 - Local development environment setup
-- Automated build and deployment scripts
+- A modular CLI tool for managing your plugin development lifecycle
 - Best practices and examples
 - Developer resources and documentation
 
@@ -17,7 +17,7 @@ Whether you're new to Rundeck plugin development or looking for a streamlined wo
 ## Features
 
 - 🚀 **Quick Setup**: One-command local development environment
-- 🔧 **Development Tools**: Automated build and deployment scripts
+- 🔧 **Development Tools**: A modular CLI for managing your plugin development lifecycle
 - 📦 **Docker Integration**: Containerized Rundeck for consistent development
 - 🎨 **UI Plugin Template**: Ready-to-customize JavaScript and CSS
 - 📚 **Documentation**: Comprehensive guides and examples
@@ -27,18 +27,22 @@ Whether you're new to Rundeck plugin development or looking for a streamlined wo
 
 ```
 rundeck-plugin-starter-kit/
-├── plugin.yaml                     # Plugin configuration file
-├── resources/
-│   ├── js/
-│   │   └── main.js                 # Main JavaScript functionality
-│   └── css/
-│       └── main.css               # Custom styling
-├── setup-localdev-rundeck.sh      # Local development setup script
-├── deploy-rundeck-plugins.sh      # Plugin deployment script
-├── .envrc.example                 # Environment configuration template
-├── .gitignore                     # Git ignore rules
-├── README.md                      # This file
-└── CONTRIBUTING.md                # Contribution guidelines
+├── rundeck-plugins-cli             # A modular CLI for managing your plugin development lifecycle
+├── commands/
+│   ├── create.sh                   # Creates a new plugin.yaml file
+│   ├── spinup.sh                   # Sets up the local development environment
+│   └── deploy.sh                   # Deploys the plugin to the local Rundeck instance
+├── examples/
+│   └── ui-plugin-example/
+│       ├── plugin.yaml             # Plugin configuration file
+│       └── resources/
+│           ├── js/
+│           │   └── main.js         # Main JavaScript functionality
+│           └── css/
+│               └── main.css        # Custom styling
+├── .envrc.example                  # Environment configuration template
+├── .gitignore                      # Git ignore rules
+└── README.md                       # This file
 ```
 
 ## Quick Start
@@ -60,15 +64,20 @@ rundeck-plugin-starter-kit/
 
 2. **Start Development Environment**
    ```bash
-   ./setup-localdev-rundeck.sh
+   ./rundeck-plugins-cli spinup
    ```
 
-3. **Deploy Your Plugin**
+3. **Create a new plugin**
+    ```bash
+    ./rundeck-plugins-cli create
+    ```
+
+4. **Deploy Your Plugin**
    ```bash
-   ./deploy-rundeck-plugins.sh
+   ./rundeck-plugins-cli deploy
    ```
 
-4. **Access Rundeck**
+5. **Access Rundeck**
    - Open your browser to `http://localhost:4440`
    - Login with default credentials: `admin/admin`
    - Navigate to Jobs to see your plugin in action
@@ -92,27 +101,7 @@ export RUNDECK_AUTH_TOKEN="your-api-key"    # API token for automation
 
 ### Plugin Configuration (plugin.yaml)
 
-The plugin configuration defines how your plugin integrates with Rundeck:
-
-```yaml
-name: your-plugin-name
-version: 1.0.0
-description: "Your plugin description"
-rundeckPluginVersion: 1.2
-author: Your Name
-providers:
-  - service: UI
-    name: your-plugin-name
-    plugin-type: ui
-    title: "Your Plugin Title"
-    description: "Detailed description"
-    ui:
-      - pages: 'menu/jobs'  # Target page
-        scripts:
-          - js/main.js      # JavaScript files
-        styles:
-          - css/main.css    # CSS files
-```
+The plugin configuration defines how your plugin integrates with Rundeck. You can find an example in `examples/ui-plugin-example/plugin.yaml`.
 
 ## Development Workflow
 
@@ -127,7 +116,7 @@ Edit the following files to customize your plugin:
 ### 2. Test Changes
 
 ```bash
-./deploy-rundeck-plugins.sh
+./rundeck-plugins-cli deploy
 ```
 
 This will:
