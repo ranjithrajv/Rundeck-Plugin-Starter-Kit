@@ -29,8 +29,8 @@ Whether you're new to Rundeck plugin development or looking for a streamlined wo
 rundeck-plugin-starter-kit/
 ├── rundeck-plugins-cli             # A modular CLI for managing your plugin development lifecycle
 ├── commands/
-│   ├── create.sh                   # Creates a new plugin.yaml file
 │   ├── spinup.sh                   # Sets up the local development environment
+│   ├── create.sh                   # Creates a new plugin.yaml file
 │   └── deploy.sh                   # Deploys the plugin to the local Rundeck instance
 ├── examples/
 │   └── ui-plugin-example/
